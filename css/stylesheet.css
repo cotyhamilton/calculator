@@ -1,0 +1,57 @@
+body {
+    background-color: #333;
+}
+
+table {
+    width: 100%;
+    color: #333;
+    font-weight: 100;
+}
+
+.display {
+    width: auto;
+    height: 160px;
+    text-align: right;
+    color: #efefef;
+    font-size: 5em;
+}
+
+.display-text {
+    padding-top: 20px;
+    padding-right: 36px;
+}
+
+.button {
+    text-align: center;
+    font-size: 3em;
+    width: 25%;
+    margin-left: -2px;
+    margin-right: -2px;
+    height: 80px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #efefef;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.top {
+    font-size: 2em;
+    background-color: #ddd;
+}
+
+.right {
+    color: #efefef;
+    background-color: orange;
+}
+
+.zero {
+    border-right: none;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    left: 12px;
+    color: #efefef
+}
