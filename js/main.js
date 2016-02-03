@@ -55,8 +55,10 @@ $(document).ready(function() {
     });
     
     $('.dot').on( "click", function() {
-        temp += "."
-        $('.display-text').text(temp);
+        if (temp.indexOf('.')) {
+            temp += "."
+            $('.display-text').text(temp);
+        }
     });
 
     $('.divide').on( "click", function() {
