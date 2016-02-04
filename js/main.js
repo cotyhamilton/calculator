@@ -1,13 +1,13 @@
 $(document).ready(function() {
-    function lenCheck(num) {
+    function display() {
         if (num.length > 9) {
-            $('.display-text').text(num.substr(num.length-9,9));
-            if (num.length > 15) {
-                num = "";
-                $('.display-text').text("Err");
-            }
-        } 
-    };
+            $(".display").css("font-size", "3em");
+        }
+        else {
+            $(".display").css("font-size", "5em");
+        }
+        $('.display-text').text(num);
+    }
     
     var num = "",
         newnum = "",
@@ -17,8 +17,7 @@ $(document).ready(function() {
 
     $('.number').on( "click", function() {
         num += $(this).text();
-        $('.display-text').text(num);
-        lenCheck(num);
+        display();
     });
     
     $('.dot').on( "click", function() {
@@ -31,19 +30,24 @@ $(document).ready(function() {
         if (dotCount === 0) {
             num += ".";
         }
-        $('.display-text').text(num);
-        lenCheck(num);
+        display();
     });
     
     $('.operator').on( "click", function() {
         operator = $(this).text();
+        if (newnum) {
+            $('.equals').click();
+            newnum = num;
+            num = "";
+            return;
+        }
         newnum = num;
         num = "";
     })
     
     $('.sqrt').on( "click", function() {
         num = Math.sqrt(parseFloat(num, 10)).toString();
-        $('.display-text').text(num);
+        display();
     })
     
     $('.equals').on( "click", function() {
@@ -59,25 +63,24 @@ $(document).ready(function() {
         else if (operator === "+") {
             num = (parseFloat(newnum, 10) + parseFloat(num, 10)).toString(10);
         }
-        $('.display-text').text(num);
-        lenCheck(num);
+        display();
         newnum = "";
     });
     
     $('.clear').on( "click", function() {
         num = "";
         newnum = "";
-        $('.display-text').text(0);
+        $('.display').text(0);
     });
     
     $('.negative').on( "click", function() {
         num = (-(parseFloat(newnum, 10)).toString(10));
-        $('.display-text').text(num);
+        display();
     });
     
     $('.percent').on("click", function() {
         num = num / 100;
-        $('.display-text').text(num);
+        display();
     })
 
   
