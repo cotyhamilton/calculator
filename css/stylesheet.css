@@ -46,10 +46,6 @@ table {
     background-color: #FD9729;
 }
 
-.zero {
-    border-right: none;
-}
-
 .footer {
     position: fixed;
     bottom: 0px;

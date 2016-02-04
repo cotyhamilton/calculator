@@ -1,113 +1,83 @@
 $(document).ready(function() {
-    var cal = "",
-        temp = "";
+    function lenCheck(num) {
+        if (num.length > 9) {
+            $('.display-text').text(num.substr(num.length-9,9));
+            if (num.length > 15) {
+                num = "";
+                $('.display-text').text("Err");
+            }
+        } 
+    };
+    
+    var num = "",
+        newnum = "",
+        operator = "";
 
     $('.display-text').text(0);
 
-    $('.one').on( "click", function() {
-        temp += "1"
-        $('.display-text').text(temp);
-    });
-    
-    $('.two').on( "click", function() {
-        temp += "2";
-        $('.display-text').text(temp);
-    });
-    
-    $('.three').on( "click", function() {
-        temp += "3";
-        $('.display-text').text(temp);
-    });
-
-    $('.four').on( "click", function() {
-        temp += "4";
-        $('.display-text').text(temp);
-    });
-
-    $('.five').on( "click", function() {
-        temp += "5";
-        $('.display-text').text(temp);
-    });
-    
-    $('.six').on( "click", function() {
-        temp += "6";
-        $('.display-text').text(temp);
-    });
-
-    $('.seven').on( "click", function() {
-        temp += "7"
-        $('.display-text').text(temp);
-    });
-
-    $('.eight').on( "click", function() {
-        temp += "8"
-        $('.display-text').text(temp);
-    });
-    
-    $('.nine').on( "click", function() {
-        temp += "9"
-        $('.display-text').text(temp);
-    });
-    
-    $('.zero').on( "click", function() {
-        temp += "0"
-        $('.display-text').text(temp);
+    $('.number').on( "click", function() {
+        num += $(this).text();
+        $('.display-text').text(num);
+        lenCheck(num);
     });
     
     $('.dot').on( "click", function() {
-        if (temp.indexOf('.')) {
-            temp += "."
-            $('.display-text').text(temp);
+        var dotCount = 0;
+        for (var i = 0; i < num.length; i++) {
+            if (num[i] === ".") {
+                dotCount++;
+            }
         }
-    });
-
-    $('.divide').on( "click", function() {
-        cal += temp;
-        cal += "/";
-        temp = "";
-    });
-
-    $('.multiply').on( "click", function() {
-        cal += temp;
-        cal += "*";
-        temp = "";
-    });
-
-    $('.minus').on( "click", function() {
-        cal += temp;
-        cal += "-";
-        temp = "";
-    });
-
-    $('.plus').on( "click", function() {
-        cal += temp;
-        cal += "+";
-        temp = "";
+        if (dotCount === 0) {
+            num += ".";
+        }
+        $('.display-text').text(num);
+        lenCheck(num);
     });
     
+    $('.operator').on( "click", function() {
+        operator = $(this).text();
+        newnum = num;
+        num = "";
+    })
+    
+    $('.sqrt').on( "click", function() {
+        num = Math.sqrt(parseFloat(num, 10)).toString();
+        $('.display-text').text(num);
+    })
+    
     $('.equals').on( "click", function() {
-        cal += temp;
-        $('.display-text').text(eval(cal));
-        cal = (eval(cal));
-        temp = "";
+        if (operator === "÷") {
+            num = (parseFloat(newnum, 10) / parseFloat(num, 10)).toString(10);
+        }
+        else if (operator === "×") {
+            num = (parseFloat(newnum, 10) * parseFloat(num, 10)).toString(10);
+        }
+        else if (operator === "−") {
+            num = (parseFloat(newnum, 10) - parseFloat(num, 10)).toString(10);
+        }
+        else if (operator === "+") {
+            num = (parseFloat(newnum, 10) + parseFloat(num, 10)).toString(10);
+        }
+        $('.display-text').text(num);
+        lenCheck(num);
+        newnum = "";
     });
     
     $('.clear').on( "click", function() {
-        cal = "";
-        temp = "";
+        num = "";
+        newnum = "";
         $('.display-text').text(0);
     });
     
     $('.negative').on( "click", function() {
-        cal = -cal;
-        temp = -temp;
-        $('.display-text').text(temp);
+        num = (-(parseFloat(newnum, 10)).toString(10));
+        $('.display-text').text(num);
     });
     
     $('.percent').on("click", function() {
-        cal = cal/100;
-        temp = temp/100;
-        $('.display-text').text(temp);
+        num = num / 100;
+        $('.display-text').text(num);
     })
 
   
