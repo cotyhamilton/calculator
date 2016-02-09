@@ -70,7 +70,7 @@ $(document).ready(function() {
     $('.clear').on( "click", function() {
         num = "";
         newnum = "";
-        $('.display').text(0);
+        $('.display-text').text(0);
     });
     
     $('.negative').on( "click", function() {
